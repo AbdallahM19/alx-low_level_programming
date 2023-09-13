@@ -36,7 +36,7 @@ int numLength(int num)
 int main(void)
 {
 	int count, initias10;
-	unsigned long f1 = 1, f2 = 2, sum, mx = 100000000, f1o = 0, f20 = 0, sum2 = 0;
+	unsigned long f1 = 1, f2 = 2, sum, mx = 100000000, f1o = 0, f2o = 0, sum2 = 0;
 
 	for (count = 1; count <= 98; count++)
 	{
