@@ -5,7 +5,7 @@
  *             only using _putchar twice
  *
  * Return: Always 0 (Success)
-*/
+ */
 
 void print_numbers(void)
 {
@@ -15,5 +15,5 @@ void print_numbers(void)
 	{
 		_putchar(num);
 	}
-	printf('\n');
+	_putchar('\n');
 }
