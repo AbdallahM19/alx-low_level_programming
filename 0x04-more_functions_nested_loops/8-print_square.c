@@ -1,21 +1,30 @@
 #include "main.h"
 
 /**
- * print_square - print 8 square with (#)
+ * print_square - print a square with (#)
  *
  * @size: is the size of the square
  *
- * Return: always 0 (Success)
+ * Return: Always 0 (Success)
 */
 
 void print_square(int size)
 {
-	int row, col;
-
-	for (row = 1; row <= size; row++)
+	if (size <= 0)
 	{
-		for (col = 1; col <= size; col++)
-			_putchar('#');
 		_putchar('\n');
+	}
+	else
+	{
+		int row, col;
+
+		for (row = 0; row < size; row++)
+		{
+			for (col = 0; col < size; col++)
+			{
+				_putchar('#');
+			}
+			_putchar('\n');
+		}
 	}
 }
