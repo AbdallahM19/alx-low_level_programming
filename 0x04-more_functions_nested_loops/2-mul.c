@@ -11,5 +11,5 @@
 
 int mul(int a, int b)
 {
-	return (a * b);
+	printf("%d\n", (a * b));
 }
