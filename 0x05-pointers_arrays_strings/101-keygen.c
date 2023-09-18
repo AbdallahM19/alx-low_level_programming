@@ -9,8 +9,8 @@
 
 int main(void)
 {
-	int a = 0;
-	char b = 0;
+	int a;
+	char b;
 
 	srand(time(NULL));
 	while (a <= 4065)
