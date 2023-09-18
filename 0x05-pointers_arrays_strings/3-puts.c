@@ -5,15 +5,13 @@
  *              followed by a new line, to stdout.
  *
  * @str: string parameter to print
- * Return: 0 success
 */
 
 void _puts(char *str)
 {
 	while (*str != NULL)
 	{
-		_putchar(*str);
-		str++;
+		_putchar(*str++);
 	}
 	_putchar('\n');
 }
