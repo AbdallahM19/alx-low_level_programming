@@ -1,8 +1,8 @@
 #include"main.h"
 
 /**
- * rot13 - prints an integer.
- * @a: string input
+ * print_number - prints an integer.
+ * @n: string input
  * Return: prints an integer.
 */
 
