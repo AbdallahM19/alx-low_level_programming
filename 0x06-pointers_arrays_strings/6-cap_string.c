@@ -11,9 +11,9 @@
 
 char *cap_string(char *a)
 {
-	int b;
+	int b = 0;
 
-	for (b = 0; a[b] != '\0' && a[b] >= 'a' && a[b] <= 'z'; b++)
+	while (a[b] != '\0' && ((a[b] >= 'a' && a[b] <= 'z')))
 	{
 		if (a[b - 1] == ' ' ||
 			a[b - 1] == '\t' ||
@@ -32,6 +32,7 @@ char *cap_string(char *a)
 		{
 			a[b] -= 32;
 		}
+		b++;
 	}
 	return (a);
 }
