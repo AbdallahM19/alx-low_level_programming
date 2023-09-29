@@ -11,7 +11,9 @@
 int num_prime(int n, int n2);
 int is_prime_number(int n)
 {
-	return (num_prime(n, 2));
+	if (n <= 1)
+		return (0);
+	return (num_prime(n, n - 1));
 }
 
 /**
@@ -23,10 +25,10 @@ int is_prime_number(int n)
 
 int num_prime(int n, int n2)
 {
-	if (n % n2 == 0 || n <= 1)
-		return (0);
-	else if (n2 >= n && n > 1)
+	if (n2 == 1)
 		return (1);
-	else
-		return (num_prime(n, n2 + 1));
+	if (n % n2 == 0 && n2 > 0)
+		return (0);
+	return (actual_prime(n, n2 - 1));
+
 }
