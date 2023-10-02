@@ -11,11 +11,11 @@
 
 int main(int argc, char *argv[])
 {
-	int a, b = 0, mon = atoi(argv[1]);
-	int num[] = {25, 10, 5, 2, 1};
-
 	if (argc == 2)
 	{
+		int a, b = 0, mon = atoi(argv[1]);
+		int num[] = {25, 10, 5, 2, 1};
+
 		for (a = 0; a < 5; a++)
 		{
 			if (mon >= num[a])
