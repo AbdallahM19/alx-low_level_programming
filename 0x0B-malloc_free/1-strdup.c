@@ -23,10 +23,8 @@ char *_strdup(char *str)
 
 	if (p == NULL)
 		return (NULL);
-	else
-	{
-		for (i = 0; i <= l; i++)
-			p[i] = str[i];
-	}
+
+	for (i = 0; i <= l; i++)
+		p[i] = str[i];
 	return (p);
 }
