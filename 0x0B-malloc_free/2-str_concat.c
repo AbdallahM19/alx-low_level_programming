@@ -42,16 +42,15 @@ char *str_concat(char *s1, char *s2)
 
 	if (z == NULL)
 		return (NULL);
-	for (b = 0; b <= w1 + w2; b++)
+
+	for (b = 0; b < w1; b++)
 	{
-		if (b < w1)
-		{
-			z[b] = s1[b];
-		}
-		else
-		{
-			z[b] = s2[b];
-		}
+		z[b] = s1[b];
+	}
+
+	for (b = 0; b < w2; b++)
+	{
+		z[w1 + b] = s2[b];
 	}
 
 	z[b] = '\0';
