@@ -32,7 +32,7 @@ int w_count(char *s)
 
 char **strtow(char *str)
 {
-	int a = 0, j = 0, b = 0, l = 0, n = 0, wc = 0;
+	int a, j, b, l, n = 0, wc = 0;
 	char **word;
 
 	if (str == NULL || *str == '\0')
