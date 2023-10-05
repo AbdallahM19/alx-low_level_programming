@@ -2,52 +2,51 @@
 #include "main.h"
 
 /**
- * count_word - to count the number of words in a string
+ * w_count - to count the number of words in a string
  * @s: string to evaluate
  * Return: word
  */
-int count_word(char *s)
+int w_count(char *s)
 {
-	int flag, c, w;
+	int len, a, b;
 
-	flag = 0;
-	w = 0;
+	len = 0;
+	a = 0;
 
-	for (c = 0; s[c] != '\0'; c++)
+	for (a = 0; s[a] != '\0'; a++)
 	{
-		if (s[c] == ' ')
-			flag = 0;
-		else if (flag == 0)
+		if (s[a] == ' ')
+			len = 0;
+		else if (len == 0)
 		{
-			flag = 1;
-			w++;
+			len = 1;
+			b++;
 		}
 	}
 
-	return (w);
+	return (b);
 }
 
 /**
- * **strtow - splits a string into words
+ * **strtow - Write a function that splits a string into words.
  * @str: string to split
  *
- * Return: pointer to an array of strings (Success)
- * or NULL (Error)
+ * Return: pointer to an array
  */
 
 char **strtow(char *str)
 {
-	char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
+	char **tab2, *tab;
+	int i, k = 0, len = 0, words, c = 0, s, e;
 
 	while (*(str + len))
 		len++;
-	words = count_word(str);
+	words = w_count(str);
 	if (words == 0)
 		return (NULL);
 
-	matrix = (char **) malloc(sizeof(char *) * (words + 1));
-	if (matrix == NULL)
+	tab2 = (char **) malloc(sizeof(char *) * (words + 1));
+	if (tab2 == NULL)
 		return (NULL);
 
 	for (i = 0; i <= len; i++)
@@ -56,23 +55,23 @@ char **strtow(char *str)
 		{
 			if (c)
 			{
-				end = i;
-				tmp = (char *) malloc(sizeof(char) * (c + 1));
-				if (tmp == NULL)
+				e = i;
+				tab = (char *) malloc(sizeof(char) * (c + 1));
+				if (tab == NULL)
 					return (NULL);
-				while (start < end)
-					*tmp++ = str[start++];
-				*tmp = '\0';
-				matrix[k] = tmp - c;
+				while (s < e)
+					*tab++ = str[s++];
+				*tab = '\0';
+				tab2[k] = tab - c;
 				k++;
 				c = 0;
 			}
 		}
 		else if (c++ == 0)
-			start = i;
+			s = i;
 	}
 
-	matrix[k] = NULL;
+	tab2[k] = NULL;
 
-	return (matrix);
+	return (tab2);
 }
