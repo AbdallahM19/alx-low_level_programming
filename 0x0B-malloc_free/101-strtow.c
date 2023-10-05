@@ -8,13 +8,13 @@
  */
 int w_count(char *s)
 {
-	int n = 0, i = 0;
+	int n = 0, i;
 
 	for (i = 0; s[i]; i++)
 	{
 		if (s[i] == ' ')
 		{
-			if (s[i + 1] != ' ' && s[i + 1])
+			if (s[i + 1] != ' ' && s[i + 1] != '\0')
 				n++;
 		}
 		else if (i == 0)
@@ -35,12 +35,12 @@ char **strtow(char *str)
 	int a = 0, j = 0, b = 0, l = 0, n = 0, wc = 0;
 	char **word;
 
-	if (str == NULL || str[0] == '\0')
+	if (str == NULL || *str == '\0')
 		return (NULL);
 	wc = w_count(str);
 	if (n == 1)
 		return (NULL);
-	word = malloc((wc + 1) * sizeof(char *));
+	word = (char **)malloc(n * sizeof(char *));
 	if (word == NULL)
 		return (NULL);
 	word[n - 1] = NULL;
@@ -55,13 +55,12 @@ char **strtow(char *str)
 			j--;
 			if (word[wc] == NULL)
 			{
-				for (; b < wc; b++)
+				for (b = 0; b < wc; b++)
 					free(word[b]);
 				free(word[n - 1]);
 				free(word);
 				return (NULL);
 			}
-
 			for (l = 0; l < j; l++)
 				word[wc][l] = str[a + l];
 			word[wc][l] = '\0';
