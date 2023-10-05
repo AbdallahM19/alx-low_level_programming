@@ -28,7 +28,7 @@ int _strlen(char *a)
 
 char *argstostr(int ac, char **av)
 {
-	int i = 0, nl = 0, b = 0, l = 0;
+	int i, nl = 0, b, l = 0;
 	char *str;
 
 	if (ac == 0 || av == NULL)
