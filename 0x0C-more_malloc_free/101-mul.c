@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * put_s - checks if a string includes a non-digit char
@@ -8,14 +6,9 @@
  * Return: 0 if a non-digit, 1 otherwise
  */
 
-int put_s(char *s)
+int put_s(int s)
 {
-	for (int a = 0; s[a]; a++)
-	{
-		if (s[a] < '0' || s[a] > '9')
-			return (0);
-	}
-	return (1);
+	return (s >= 48 && s <= 57);
 }
 
 /**
