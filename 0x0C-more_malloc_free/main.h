@@ -16,7 +16,6 @@ int put_s (char *s);
 int str_len(char *s);
 void error(void);
 int mul_strings(char *s1, char *s2, int *res);
-int val_input(int argc, char *argv[]);
-void print_digit(unsigned long int n);
+int main(int argc, char *argv[]);
 
 #endif /* MAIN_H */

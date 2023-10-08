@@ -32,21 +32,13 @@ int str_len(char *s)
 }
 
 /**
- * val_input - Validate-input
- * @argc: Num arguments
- * @argv: Array of arguments
- * Return: 1 if validation succeeds, 0 otherwise
+ * error - print error with exit 98
  */
 
-int val_input(int argc, char *argv[])
+void error(void)
 {
-	if (argc != 3 || !put_s(argv[1]) || !put_s(argv[2]))
-	{
-		printf("Error\n");
-		exit(98);
-		return (0);
-	}
-	return (1);
+	printf("Error\n");
+	exit(98);
 }
 
 /**
@@ -109,13 +101,14 @@ int main(int argc, char *argv[])
 {
 	int *result;
 	int result_len;
-	int len1 = str_len(argv[1]);
-	int len2 = str_len(argv[2]);
 
-	if (!val_input(argc, argv))
+	if (argc != 3 || !put_s(argv[1]) || !put_s(argv[2]))
+	{
+		error();
 		return (1);
+	}
 
-	result = malloc(sizeof(int) * (len1 + len2 + 1));
+	result = malloc(sizeof(int) * (str_len(argv[1]) + str_len(argv[2]) + 1));
 	if (!result)
 		return (1);
 
