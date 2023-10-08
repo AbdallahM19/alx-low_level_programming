@@ -12,8 +12,11 @@ char *string_nconcat(char *s1, char *s2, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int size);
 int *array_range(int min, int max);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void put_s (char *s);
+int put_s (char *s);
 int str_len(char *s);
+void error(void);
+int mul_strings(char *s1, char *s2, int *res);
+int val_input(int argc, char *argv[]);
 void print_digit(unsigned long int n);
 
 #endif /* MAIN_H */
