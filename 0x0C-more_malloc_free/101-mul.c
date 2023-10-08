@@ -1,23 +1,22 @@
 #include "main.h"
 
 /**
- * _isdigit - checks if character is a digit
- * @c: the character to check
- *
+ * put_s - checks if character is a digit
+ * @s: char
  * Return: 1 if digit, 0 otherwise
  */
-int _isdigit(int c)
+
+int put_s(int s)
 {
-	return (c >= '0' && c <= '9');
+	return (s >= '0' && s <= '9');
 }
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
- *
- * Return: integer length of string
+ * str_len - returns the length
+ * @s: str
+ * Return: int len of str
  */
-int _strlen(char *s)
+int str_len(char *s)
 {
 	int i = 0;
 
@@ -27,49 +26,49 @@ int _strlen(char *s)
 }
 
 /**
- * handle_errors - handles errors for main
+ * handle_error - handle error for main
  */
 
-void handle_errors(void)
+void handle_error(void)
 {
 	printf("Error\n");
 	exit(98);
 }
 
 /**
- * big_multiply - multiply two big number strings
- * @s1: the first big number string
- * @s2: the second big number string
- *
- * Return: the product big number string
+ * mul_numbers - multy two + int str
+ * @s1: First + int str
+ * @s2: Second + int str
+ * Return: Result of mul as a string
  */
-char *big_multiply(char *s1, char *s2)
+
+char *mul_numbers(char *s1, char *s2)
 {
 	char *r;
 	int l1, l2, a, b, c, x;
 
-	l1 = _strlen(s1);
-	l2 = _strlen(s2);
+	l1 = str_len(s1);
+	l2 = str_len(s2);
 	r = malloc(a = x = l1 + l2);
 	if (!r)
-		handle_errors();
+		handle_error();
 	while (a--)
 		r[a] = 0;
 	for (l1--; l1 >= 0; l1--)
 	{
-		if (!_isdigit(s1[l1]) || !_isdigit(s2[l2 - 1]))
+		if (!put_s(s1[l1]) || !put_s(s2[l2 - 1]))
 		{
 			free(r);
-			handle_errors();
+			handle_error();
 		}
 		a = s1[l1] - '0';
 		c = 0;
-		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
+		for (l2 = str_len(s2) - 1; l2 >= 0; l2--)
 		{
-			if (!_isdigit(s2[l2]))
+			if (!put_s(s2[l2]))
 			{
 				free(r);
-				handle_errors();
+				handle_error();
 			}
 			b = s2[l2] - '0';
 
@@ -84,36 +83,36 @@ char *big_multiply(char *s1, char *s2)
 }
 
 /**
- * main - multiply two big number strings
- * @argc: the number of arguments
- * @argv: the argument vector
- *
- * Return: Always 0 on success.
+ * main - multy two + num
+ * @argc: num of argu
+ * @argv: arr argu
+ * Return: always 0 (Success)
  */
+
 int main(int argc, char **argv)
 {
-	char *r;
+	char *res;
 	int a, c, x;
 
-	if (argc != 3 || !_isdigit(argv[1][0]) || !_isdigit(argv[2][0]))
-		handle_errors();
-	x = _strlen(argv[1]) + _strlen(argv[2]);
-	r = big_multiply(argv[1], argv[2]);
+	if (argc != 3 || !put_s(argv[1][0]) || !put_s(argv[2][0]))
+		handle_error();
+	x = str_len(argv[1]) + str_len(argv[2]);
+	res = mul_numbers(argv[1], argv[2]);
 	c = 0;
 	a = 0;
 
 	while (c < x)
 	{
-		if (r[c])
+		if (res[c])
 			a = 1;
 		if (a)
-			_putchar(r[c] + '0');
+			_putchar(res[c] + '0');
 		c++;
 	}
 
 	if (!a)
 		_putchar('0');
 	_putchar('\n');
-	free(r);
+	free(res);
 	return (0);
 }
