@@ -32,16 +32,6 @@ int str_len(char *s)
 }
 
 /**
- * error - print error with exit 98
- */
-
-void error(void)
-{
-	printf("Error\n");
-	exit(98);
-}
-
-/**
  * val_input - Validate-input
  * @argc: Num arguments
  * @argv: Array of arguments
@@ -52,7 +42,8 @@ int val_input(int argc, char *argv[])
 {
 	if (argc != 3 || !put_s(argv[1]) || !put_s(argv[2]))
 	{
-		error();
+		printf("Error\n");
+		exit(98);
 		return (0);
 	}
 	return (1);
