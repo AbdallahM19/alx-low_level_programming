@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <string.h>
 
 /**
  * _isdigit - checks if character is a digit
@@ -29,6 +27,16 @@ int _strlen(char *s)
 }
 
 /**
+ * handle_errors - handles errors for main
+ */
+
+void handle_errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
  * big_multiply - multiply two big number strings
  * @s1: the first big number string
  * @s2: the second big number string
@@ -44,32 +52,29 @@ char *big_multiply(char *s1, char *s2)
 	l2 = _strlen(s2);
 	r = malloc(a = x = l1 + l2);
 	if (!r)
-		return (NULL);
+		handle_errors();
 	while (a--)
 		r[a] = 0;
-
 	for (l1--; l1 >= 0; l1--)
 	{
-		if (!_isdigit(s1[l1]))
+		if (!_isdigit(s1[l1]) || !_isdigit(s2[l2 - 1]))
 		{
 			free(r);
-			printf("Error\n"), exit(98);
+			handle_errors();
 		}
 		a = s1[l1] - '0';
 		c = 0;
-
 		for (l2 = _strlen(s2) - 1; l2 >= 0; l2--)
 		{
 			if (!_isdigit(s2[l2]))
 			{
 				free(r);
-				printf("Error\n"), exit(98);
+				handle_errors();
 			}
 			b = s2[l2] - '0';
 
 			c += r[l1 + l2 + 1] + (a * b);
 			r[l1 + l2 + 1] = c % 10;
-
 			c /= 10;
 		}
 		if (c)
@@ -90,24 +95,25 @@ int main(int argc, char **argv)
 	char *r;
 	int a, c, x;
 
-	if (argc != 3)
-		printf("Error\n"), exit(98);
-
+	if (argc != 3 || !_isdigit(argv[1][0]) || !_isdigit(argv[2][0]))
+		handle_errors();
 	x = _strlen(argv[1]) + _strlen(argv[2]);
 	r = big_multiply(argv[1], argv[2]);
 	c = 0;
 	a = 0;
+
 	while (c < x)
 	{
 		if (r[c])
 			a = 1;
 		if (a)
-			putchar(r[c] + '0');
+			_putchar(r[c] + '0');
 		c++;
 	}
+
 	if (!a)
-		putchar('0');
-	putchar('\n');
+		_putchar('0');
+	_putchar('\n');
 	free(r);
 	return (0);
 }
