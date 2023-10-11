@@ -3,10 +3,10 @@
 #include <stdio.h>
 
 /**
- * str_len - loop of len strings
+ * _strlen - loop of len strings
  * @s: char
  * Return: len
- */
+*/
 
 int _strlen(char *s)
 {
@@ -18,11 +18,11 @@ int _strlen(char *s)
 }
 
 /**
- * str_cpy - Copy a str from source to destination.
+ * _strcpy - Copy a str from source to destination.
  * @d: Destination string.
  * @s: Source string.
  * Return: pointer to the destination string.
- */
+*/
 
 char *_strcpy(char *d, char *s)
 {
@@ -44,7 +44,7 @@ char *_strcpy(char *d, char *s)
  * @age: age, type = float
  * @owner: owner, type = char *
  * Return: 0
- */
+*/
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
