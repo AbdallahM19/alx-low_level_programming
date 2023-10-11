@@ -6,9 +6,9 @@
  * str_len - loop of len strings
  * @s: char
  * Return: len
-*/
+ */
 
-int str_len(char *s)
+int _strlen(char *s)
 {
 	int len = 0;
 
@@ -22,9 +22,9 @@ int str_len(char *s)
  * @d: Destination string.
  * @s: Source string.
  * Return: pointer to the destination string.
-*/
+ */
 
-char *str_cpy(char *d, char *s)
+char *_strcpy(char *d, char *s)
 {
 	int a = 0;
 
@@ -44,21 +44,21 @@ char *str_cpy(char *d, char *s)
  * @age: age, type = float
  * @owner: owner, type = char *
  * Return: 0
-*/
+ */
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *dog_new = malloc(sizeof(dog_t));
+	dog_t *dog_new;
 	int a1, a2;
 
-	a1 = str_len(name);
-	a2 = str_len(owner);
+	a1 = _strlen(name);
+	a2 = _strlen(owner);
 
+	dog_new = malloc(sizeof(dog_t));
 	if (dog_new == NULL)
 		return (NULL);
+
 	dog_new->name = malloc(sizeof(char) * (a1 + 1));
-
-
 	if (dog_new->name == NULL)
 	{
 		free(dog_new);
@@ -67,14 +67,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog_new->owner = malloc(sizeof(char) * (a2 + 1));
 	if (dog_new->owner == NULL)
 	{
-		free(dog_new->name);
 		free(dog_new);
+		free(dog_new->name);
 		return (NULL);
 	}
 
-	str_cpy(dog_new->name, name);
+	_strcpy(dog_new->name, name);
 	dog_new->age = age;
-	str_cpy(dog_new->owner, owner);
+	_strcpy(dog_new->owner, owner);
 
 	return (dog_new);
 }
