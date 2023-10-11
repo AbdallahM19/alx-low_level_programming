@@ -26,14 +26,15 @@ int _strlen(char *s)
 
 char *_strcpy(char *d, char *s)
 {
-	int a = 0;
+	int a, i;
 
-	while(s[a] != '\0')
-	{
-		d[a] = s[a];
+	a = 0;
+
+	while (s[a] != '\0')
 		a++;
-	}
-	d[a] = '\0';
+	for (i = 0; i < a; i++)
+		d[i] = s[i];
+	d[i] = '\0';
 
 	return (d);
 }
