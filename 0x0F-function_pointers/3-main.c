@@ -10,28 +10,28 @@
  * Return: Always 0.
  */
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int (*op_cal)(int, int), a, b;
+	int *op_cal, n1, n2;
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	a = atoi(argv[1]);
-	b = atoi(argv[3]);
-	op_cal = get_op_func(argv[2]);
-	if (!op_cal)
+	n1 = atoi(argv[1]);
+	n2 = atoi(argv[3]);
+	op_cal = argv[2];
+	if (get_op_func(op_cal) == NULL || op_cal != '\0')
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	if (!b && (argv[2][0] == '/' || argv[2][0] == '%'))
+	if (!n2 && (argv[2][0] == '/' || argv[2][0] == '%'))
 	{
 		printf("Error\n");
 		exit(100);
 	}
-	printf("%d\n", op_cal(a, b));
+	printf("%d\n", get_op_func(op_cal)(n1, n2));
 	return (0);
 }
