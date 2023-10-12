@@ -7,7 +7,7 @@
  * Return: Always 0.
  */
 
-int main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char **argv)
 {
 	int n1, n2;
 	int (*op_cal)(int, int);
@@ -20,8 +20,8 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	n1 = atoi(argv[1]);
 	n2 = atoi(argv[3]);
-	op_cal = get_op_func(argv[2]);
 
+	op_cal = get_op_func(argv[2]);
 	if (!op_cal)
 	{
 		printf("Error\n");
