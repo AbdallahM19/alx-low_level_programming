@@ -10,7 +10,7 @@
  * Return: Always 0.
  */
 
-int main(int __attribute__((__unused__)) argc, char **argv)
+int main(int argc, char **argv)
 {
 	int n1, n2;
 	int (*op_cal)(int, int);
