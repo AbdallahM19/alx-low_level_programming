@@ -11,9 +11,10 @@ void free_list(list_t *head)
 	list_t *cur;
 
 	if (!head)
-		return (0);
+		return;
+
 	node = head;
-	while (head)
+	while (node)
 	{
 		cur = node->next;
 		free(node->str);
