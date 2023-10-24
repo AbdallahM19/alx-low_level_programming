@@ -9,27 +9,27 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nodes, index = 0;
+	const listint_t *current = head;
+	const listint_t *prev = NULL;
+	size_t node_count = 0;
+	int loop_detected = 0;
 
-	nodes = looped_listint_len(head);
-
-	if (nodes == 0)
+	while (current != NULL)
 	{
-		for (; head != NULL; nodes++)
+		node_count++;
+		printf("[%p] %d\n", (void *)current, current->n);
+		if (current->next == prev)
 		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+			loop_detected = 1;
+			break;
 		}
+		prev = current;
+		current = current->next;
 	}
-	else
+	if (loop_detected)
 	{
-		for (index = 0; index < nodes; index++)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-		}
-
-		printf("-> [%p] %d\n", (void *)head, head->n);
+		fprintf(stderr, "Loop detected in the list\n");
+		exit(98);
 	}
-	return (nodes);
+	return (node_count);
 }
