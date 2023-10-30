@@ -36,6 +36,6 @@ int main(int ac, char *av[])
 	if (close(from_fd) == -1)
 		dprintf(STDERR_FILENO, ERROR_NOCLOSE, from_fd), exit(100);
 	if (close(to_fd) == -1)
-		dprintf(STDERR_FILENO, ERROR_NOCLOSE, to_fd), exit(100);
+		dprintf(STDERR_FILENO, ERROR_NOCLOSE, from_fd), exit(100);
 	return (0);
 }
