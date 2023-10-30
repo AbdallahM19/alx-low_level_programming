@@ -15,6 +15,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <elf.h>
 
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
