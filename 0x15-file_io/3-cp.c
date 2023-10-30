@@ -19,7 +19,7 @@ int main(int ac, char *av[])
 	if (from_fd == -1)
 		dprintf(2, "Error: Can't read from file %s\n", av[1]), exit(98);
 	to_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC,
-	S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (to_fd == -1)
 		dprintf(2, "Error: Can't write to %s\n", av[2]), exit(99);
 	while ((ch_r = read(from_fd, buffer, BUFFER_SIZE)) > 0)
@@ -30,9 +30,11 @@ int main(int ac, char *av[])
 	}
 	if (ch_r == -1)
 		dprintf(2, "Error: Can't read from file %s\n", av[1]), exit(98);
-	if (close(from_fd) == -1)
+	from_fd = close(from_fd);
+	to_fd = close(to_fd);
+	if (from_fd)
 		dprintf(2, "Error: Can't close fd %d\n", from_fd), exit(100);
-	if (close(to_fd) == -1)
+	if (to_fd)
 		dprintf(2, "Error: Can't close fd %d\n", to_fd), exit(100);
 	return (0);
 }
