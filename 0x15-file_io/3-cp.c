@@ -30,11 +30,9 @@ int main(int ac, char *av[])
 	}
 	if (ch_r == -1)
 		dprintf(2, "Error: Can't read from file %s\n", av[1]), exit(98);
-	from_fd = close(from_fd);
-	to_fd = close(to_fd);
-	if (from_fd)
+	if (close(from_fd) == -1)
 		dprintf(2, "Error: Can't close fd %d\n", from_fd), exit(100);
-	if (to_fd)
+	if (close(to_fd) == -1)
 		dprintf(2, "Error: Can't close fd %d\n", to_fd), exit(100);
 	return (0);
 }
