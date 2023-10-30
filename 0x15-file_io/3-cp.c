@@ -1,11 +1,10 @@
 #include "main.h"
 
 #define USAGE "Usage: cp file_from file_to\n"
-#define ERROR_NOREAD "Error: Can't read from file %s\n"
-#define ERROR_NOWRITE "Error: Can't write to %s\n"
-#define ERROR_NOCLOSE "Error: Can't close fd %d\n"
-#define PERMISSIONS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
-
+#define ERROR_NOREAD "Error: can't read from file %s\n"
+#define ERROR_NOWRITE "Error: can't write to %s\n"
+#define ERROR_NOCLOSE "Error: can't close fd %s\n"
+#define PER (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 /**
  * main - Entry point,
  * copies the content of one file to another
@@ -32,10 +31,10 @@ int main(int ac, char **av)
 		if (write(to_fd, buf, a) != a)
 			dprintf(STDERR_FILENO, ERROR_NOWRITE, av[2]), exit(99);
 	if (a == -1)
-		dprintf(STDERR_FILENO, ERROR_NOWRITE, av[1]), exit(98);
-	if (close(from_fd) == -1)
+		dprintf(STDERR_FILENO, ERROR_NOREAD, av[1]), exit(98);
+	from_fd = close(from_fd);
+	to_fd = close(to_fd);
+	if (from_fd || to_fd)
 		dprintf(STDERR_FILENO, ERROR_NOCLOSE, from_fd), exit(100);
-	if (close(to_fd) == -1)
-		dprintf(STDERR_FILENO, ERROR_NOCLOSE, to_fd), exit(100);
-	return (0);
+	return (EXIT_SUCCESS);
 }
