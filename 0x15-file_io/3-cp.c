@@ -19,8 +19,11 @@ int main(int ac, char *av[])
 	to_fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
 	if (from_fd == -1 || to_fd == -1)
-		dprintf(STDERR_FILENO, "Error: %s\n", from_fd == -1 ? "Can't read from file" : "Can't write to file"), exit(from_fd == -1 ? 98 : 99);
-
+	{
+		dprintf(STDERR_FILENO, "Error: %s\n", from_fd == -1 ?
+				"Can't read from file" : "Can't write to file");
+		exit(from_fd == -1 ? 98 : 99);
+	}
 	while ((n = read(from_fd, buffer, 1024)) > 0)
 	{
 		if (write(to_fd, buffer, n) == -1)
@@ -34,7 +37,8 @@ int main(int ac, char *av[])
 	err_close |= close(to_fd);
 
 	if (err_close == -1)
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", err_close == -1 ? from_fd : to_fd), exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n",
+				err_close == -1 ? from_fd : to_fd), exit(100);
 
 	return (0);
 }
