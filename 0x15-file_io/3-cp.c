@@ -11,7 +11,7 @@
 int main(int ac, char *av[])
 {
 	int from_fd, to_fd, ch_r, ch_w;
-	char buffer[BUFFER_SIZE];
+	char buf[BUF_SIZE];
 
 	if (ac != 3)
 		dprintf(2, "Usage: %s file_from file_to\n", av[0]), exit(97);
@@ -19,12 +19,12 @@ int main(int ac, char *av[])
 	if (from_fd == -1)
 		dprintf(2, "Error: Can't read from file %s\n", av[1]), exit(98);
 	to_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC,
-			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+				S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (to_fd == -1)
 		dprintf(2, "Error: Can't write to %s\n", av[2]), exit(99);
-	while ((ch_r = read(from_fd, buffer, BUFFER_SIZE)) > 0)
+	while ((ch_r = read(from_fd, buf, BUF_SIZE)) > 0)
 	{
-		ch_w = write(to_fd, buffer, ch_r);
+		ch_w = write(to_fd, buf, ch_r);
 		if (ch_w == -1)
 			dprintf(2, "Error: Can't write to %s\n", av[2]), exit(99);
 	}
