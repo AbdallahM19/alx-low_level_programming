@@ -4,7 +4,7 @@
 #define ERROR_NOREAD "Error: Can't read from file %s\n"
 #define ERROR_NOWRITE "Error: Can't write to %s\n"
 #define ERROR_NOCLOSE "Error: Can't close fd %d\n"
-#define PER (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
+#define PERMISSION (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 
 /**
  * main - Entry point,
@@ -25,7 +25,7 @@ int main(int ac, char *av[])
 	from_fd = open(av[1], O_RDONLY);
 	if (from_fd == -1)
 		dprintf(STDERR_FILENO, ERROR_NOREAD, av[1]), exit(98);
-	to_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, PER);
+	to_fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSION);
 	if (to_fd == -1)
 		dprintf(STDERR_FILENO, ERROR_NOWRITE, av[2]), exit(99);
 	while ((a = read(from_fd, buf, BUF_SIZE)) > 0)
@@ -36,6 +36,6 @@ int main(int ac, char *av[])
 	if (close(from_fd) == -1)
 		dprintf(STDERR_FILENO, ERROR_NOCLOSE, from_fd), exit(100);
 	if (close(to_fd) == -1)
-		dprintf(STDERR_FILENO, ERROR_NOCLOSE, from_fd), exit(100);
+		dprintf(STDERR_FILENO, ERROR_NOCLOSE, to_fd), exit(100);
 	return (0);
 }
