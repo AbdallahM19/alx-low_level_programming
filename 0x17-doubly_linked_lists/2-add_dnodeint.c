@@ -4,8 +4,7 @@
  * add_dnodeint - adds a new node of a doubly list
  * @head: double pointer
  * @n: data to insert in the new node
- * Return: the address of the new element
- * 		or NULL if it failed
+ * Return: address of the new element, or NULL if it failed
  */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
