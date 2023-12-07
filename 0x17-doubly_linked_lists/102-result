@@ -1,35 +1,27 @@
 #include <stdio.h>
-
-int is_palindrome(int num) {
-    int original = num;
-    int reverse = 0;
-
-    while (num > 0) {
-        reverse = reverse * 10 + num % 10;
-        num /= 10;
+int check_palindrome(int n) {
+    int number = n, revers = 0;
+    while (n > 0) {
+        revers = revers * 10 + n % 10;
+        n /= 10;
     }
-
-    return original == reverse;
+    return (number == revers);
 }
-
 int main() {
-    int largest_palindrome = 0;
-
-    for (int i = 100; i < 1000; i++) {
-        for (int j = i; j < 1000; j++) {
+    int largest_pal = 0;
+    for (int i = 100; i < 1000; ++i) 
+    {
+        for (int j = 100; j < 1000; ++j) 
+        {
             int product = i * j;
-            if (is_palindrome(product) && product > largest_palindrome) {
-                largest_palindrome = product;
-            }
+            if (check_palindrome(product) && product > largest_pal) 
+                largest_pal = product;
         }
     }
-
     FILE *file = fopen("102-result", "w");
     if (file != NULL) {
-        fprintf(file, "%d", largest_palindrome);
+        fprintf(file, "%d", largest_pal);
         fclose(file);
     }
-
-    return 0;
+    return (0);
 }
-
