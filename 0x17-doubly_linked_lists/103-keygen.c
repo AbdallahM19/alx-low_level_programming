@@ -25,6 +25,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	}
 	password[1] = codex[(tmp ^ 79) & 63];
 	tmp = 1;
+	i = 0;
 	while (i < len)
 	{
 		tmp *= argv[1][i];
@@ -32,6 +33,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	}
 	password[2] = codex[(tmp ^ 85) & 63];
 	tmp = 0;
+	i = 0;
 	while (i < len)
 	{
 		if (argv[1][i] > tmp)
@@ -41,12 +43,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	srand(tmp ^ 14);
 	password[3] = codex[rand() & 63];
 	tmp = 0;
+	i = 0;
 	while (i < len)
 	{
 		tmp += (argv[1][i] * argv[1][i]);
 		i++;
 	}
 	password[4] = codex[(tmp ^ 239) & 63];
+	i = 0;
 	while (i < argv[1][0])
 	{
 		tmp = rand();
