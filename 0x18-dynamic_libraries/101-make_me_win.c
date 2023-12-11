@@ -1,13 +1,19 @@
-// 101-make_me_win.c
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
+#include <dlfcn.h>
+
+void (*original_srand)(unsigned int seed) = NULL;
+int (*original_rand)(void) = NULL;
 
 void srand(unsigned int seed) {
-    // Intercept srand to do nothing
+    if (!original_srand) {
+        original_srand = dlsym(RTLD_NOW, "srand");
+    }
 }
 
 int rand(void) {
-    return 9; // Always return 9
+    if (!original_rand) {
+        original_rand = dlsym(RTLD_NOW, "rand");
+    }
+    return 9;
 }
-
