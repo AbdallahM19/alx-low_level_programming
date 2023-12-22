@@ -41,7 +41,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *new_node, *node;
 
-	if (ht == NULL || key == NULL || *key == '\0')
+	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
 		return (0);
 	node = ht->shead;
 	while (node != NULL && strcmp(key, node->key) > 0)
@@ -133,30 +133,33 @@ void insert_node(shash_table_t *ht, shash_node_t *new_node)
 }
 
 /**
- * shash_table_get - Retrieves the value associated with
- * a key in the sorted hash table.
+ * shash_table_get - Retrieves the value associated with a key in the sorted hash table.
  * @ht: The sorted hash table
  * @key: The key to search for
- * Return: The value associated with the key,
- * or NULL if the key couldn't be found.
+ * Return: The value associated with the key, or NULL if the key couldn't be found.
  */
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	shash_node_t *node;
+	unsigned long int num;
 
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (NULL);
+	num = key_index((const unsigned char *)key, ht->size);
+	if (num >= ht->size)
+		return (NULL);
 	node = ht->shead;
-	while (node != NULL && strcmp(key, node->key) > 0)
+	while (node != NULL)
+	{
+		if (strcmp(node->key, key) == 0)
+			return (node->value);
 		node = node->snext;
-	if (node != NULL && strcmp(key, node->key) == 0)
-		return (node->value);
+	}
 	return (NULL);
 }
 
 /**
- * shash_table_print - Prints the sorted hash table
- * using the sorted linked list.
+ * shash_table_print - Prints the sorted hash table using the sorted linked list.
  * @ht: The sorted hash table.
  */
 void shash_table_print(const shash_table_t *ht)
@@ -187,8 +190,8 @@ void shash_table_print_rev(const shash_table_t *ht)
 
 	if (ht == NULL)
 		return;
-	printf("{");
 	node = ht->stail;
+	printf("{");
 	while (node != NULL)
 	{
 		printf("'%s': '%s'", node->key, node->value);
@@ -210,7 +213,7 @@ void shash_table_delete(shash_table_t *ht)
 	if (ht == NULL)
 		return;
 	current_node = ht->shead;
-	while (current_node != NULL)
+	while (current_node)
 	{
 		node = current_node->snext;
 		free(current_node->key);
@@ -221,3 +224,4 @@ void shash_table_delete(shash_table_t *ht)
 	free(ht->array);
 	free(ht);
 }
+
