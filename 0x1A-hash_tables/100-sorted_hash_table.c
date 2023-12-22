@@ -133,10 +133,12 @@ void insert_node(shash_table_t *ht, shash_node_t *new_node)
 }
 
 /**
- * shash_table_get - Retrieves the value associated with a key in the sorted hash table.
+ * shash_table_get - Retrieves the value associated with
+ * a key in the sorted hash table.
  * @ht: The sorted hash table
  * @key: The key to search for
- * Return: The value associated with the key, or NULL if the key couldn't be found.
+ * Return: The value associated with the key,
+ * or NULL if the key couldn't be found.
  */
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
@@ -153,7 +155,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 }
 
 /**
- * shash_table_print - Prints the sorted hash table using the sorted linked list.
+ * shash_table_print - Prints the sorted hash table
+ * using the sorted linked list.
  * @ht: The sorted hash table.
  */
 void shash_table_print(const shash_table_t *ht)
