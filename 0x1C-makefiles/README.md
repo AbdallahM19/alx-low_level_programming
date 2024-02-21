@@ -1,0 +1,1 @@
+solution all tasks 0x1C. C - Makefiles
