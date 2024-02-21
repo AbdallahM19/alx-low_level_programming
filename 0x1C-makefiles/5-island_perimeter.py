@@ -1,22 +1,23 @@
 #!/usr/bin/python3
-"""module of island"""
-
+"""
+Create a function def island_perimeter(grid):
+that returns the perimeter of the island described in grid
+"""
 
 def island_perimeter(grid):
     """
-    czeate a function def island_pezimetez(grid):
+    returns the perimeter of the island described in grid
     """
-    counter = 0
-    row, column = len(grid) - 1, len(grid[0]) - 1
-    for x, z in enumerate(grid):
-        for j, i in enumerate(z):
-            if i == 1:
-                if x == 0 or grid[x - 1][j] != 1:
-                    counter += 1
-                if j == 0 or grid[x][j - 1] != 1:
-                    counter += 1
-                if j == column or grid[x][j + 1] != 1:
-                    counter += 1
-                if x == row or grid[x + 1][j] != 1:
-                    counter += 1
-    return counter
+    meter = 0
+    rows = len(grid)
+    columns = len(grid[0])
+
+    for i in range(rows):
+        for x in range(columns):
+            if grid[i][x] == 1:
+                meter += 4
+                if i > 0 and grid[i - 1][j] == 1:
+                    perimeter -= 2
+                if j > 0 and grid[i][j - 1] == 1:
+                    perimeter -= 2
+    return meter
