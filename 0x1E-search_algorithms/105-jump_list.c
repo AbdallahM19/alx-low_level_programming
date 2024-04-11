@@ -40,7 +40,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		head = head->next;
 	}
 	printf("Value checked at index [%ld] = [%d]\n",
-		node->index, node->n
+		head->index, head->n
 	);
 	if (head->n == value)
 		return (head);
